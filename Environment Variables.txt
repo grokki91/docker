@@ -1,0 +1,10 @@
+1) docker pull node:15.14
+ФР: Status: Downloaded newer image for node:15.14
+2) docker run --name mynode -it -e NAME=Pavel -e SUNAME=Chekalin node:15.14
+ФР: открывается терминал Welcome to Node.js v15.14.0.
+3) `Привет, ${process.env.NAME} ${process.env.SUNAME}!`
+ФР: 'Привет, Pavel Chekalin!'
+4) docker stop mynode
+ФР: контейнер остановлен
+5) docker rmi node:15.14  
+ФР: обрал удален (надо еще предварительно удалить остановленный контейнер - docker rm mynode )

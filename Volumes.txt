@@ -1,0 +1,25 @@
+1) docker pull node:15.14
+ФР: Status: Downloaded newer image for node:15.14
+2) docker run --name first_node -it -d -v ${PWD}:/var/first/data node:15.14
+ФР: 0e0da6f14e274f86ae4f204ad672b852555f53cba7fe05c11cbb2545811347ea
+3) docker run --name second_node -it -d -v ${PWD}:/var/second/data node:15.14
+ФР: 4c73ce822c2b8cd5ef0c8a3620d6d3216f8e590f590c5597c6becc0b233dbe5c
+4) docker exec -it first_node /bin/sh
+cd /var/first/data
+echo 'test' > file.txt
+ФР: создается файл file.txt с текстом test
+5) touch file2.txt
+ФР: создается второй пустой файл
+6) docker exec -it second_node /bin/sh
+ls
+ФР: bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+7) docker stop $(docker ps -a -q)
+ФР: 
+4c73ce822c2b
+0e0da6f14e27
+8) docker rm $(docker ps -a -q)docker rm $(docker ps -a -q)
+ФР: 
+4c73ce822c2b
+0e0da6f14e27
+9) docker rmi node:15.14  
+ФР: образ удален

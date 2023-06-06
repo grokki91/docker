@@ -1,0 +1,24 @@
+1) docker pull busybox
+ФР: скачался образ busybox. Status: Image is up to date for busybox:latest
+2) docker run --name pinger -it busybox ping -w 7 netology.ru
+ФР: запустился контейнер pinger. 7 packets transmitted, 7 packets received, 0% packet loss
+3) docker ps -a 
+ФР: 6dae15b602d6   busybox   "ping -w 7 netology.…"   38 seconds ago   Exited (0) 30 seconds ago  pinger
+4) docker logs pinger
+ФР: вывелись логи. 7 packets transmitted, 7 packets received, 0% packet loss
+5) docker start pinger
+ФР: pinger
+6) docker ps -a
+ФР: 6dae15b602d6   busybox   "ping -w 7 netology.…"   7 minutes ago   Exited (0) 13 seconds ago             pinger
+7) docker logs pinger
+ФР: выводится 2 блока логов по 7 пакетов.
+7 packets transmitted, 7 packets received, 0% packet loss
+7 packets transmitted, 6 packets received, 14% packet loss
+8) Количество вызово ping была 2, а количество отправленных запросов 14.
+9) docker rm pinger
+ФР: контейнер удалился.
+10) docker rmi busybox
+ФР: 
+Untagged: busybox@sha256:560af6915bfc8d7630e50e212e08242d37b63bd5c1ccf9bd4acccf116e262d5b
+Deleted: sha256:8135583d97feb82398909c9c97607159e6db2c4ca2c885c0b8f590ee0f9fe90d
+Deleted: sha256:9547b4c33213e630a0ca602a989ecc094e042146ae8afa502e1e65af6473db03
